@@ -6,12 +6,15 @@ def extractfilename(filelocation):
 
 fileloc = input("Enter full path of image file: ")
 
+filename = extractfilename(fileloc)
+
 image = Image.open(fileloc)
 
 width, height = image.size
 
-image_resized = image.resize((int(width/2), int(height/2)))
+multiplier = float(input("INPUT A MULTIPLER. For a bigger image, multiplier should be > 1 e.g. 1.75. For a smaller image, multiplier should be below 1 e.g. 0.75 "))
 
-filename = extractfilename(fileloc)
+image_resized = image.resize((int(width*multiplier), int(height*multiplier)))
 
 image = image_resized.save(filename + '_resized.jpeg')
+
