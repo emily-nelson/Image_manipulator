@@ -1,9 +1,17 @@
 from PIL import Image
 
-triangle = Image.open(r'C:\Users\Admin\Documents\5. Projects\Image_manipulator\venv\triangle.jpeg')
+def extractfilename(filelocation):
+    name_extracted = filelocation.split('\\')[-1]
+    return name_extracted.split('.')[0]
 
-width, height = triangle.size
+fileloc = input("Enter full path of image file: ")
 
-triangle_resized = triangle.resize((int(width/2), int(height/2)))
+image = Image.open(fileloc)
 
-triangle = triangle_resized.save('triangle_resized.jpeg')
+width, height = image.size
+
+image_resized = image.resize((int(width/2), int(height/2)))
+
+filename = extractfilename(fileloc)
+
+image = image_resized.save(filename + '_resized.jpeg')
